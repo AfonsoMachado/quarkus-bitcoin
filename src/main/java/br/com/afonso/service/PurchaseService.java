@@ -7,6 +7,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.core.SecurityContext;
 
+import java.util.List;
 import java.util.Optional;
 
 @ApplicationScoped
@@ -25,5 +26,9 @@ public class PurchaseService {
 
         purchase.setStatus("ENVIADA");
         purchaseRepository.persist(purchase);
+    }
+
+    public List<Purchase> findAllPurchases() {
+        return purchaseRepository.listAll();
     }
 }

@@ -1,11 +1,11 @@
 package br.com.afonso.model;
 
 import io.quarkus.elytron.security.common.BcryptUtil;
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.security.jpa.Password;
 import io.quarkus.security.jpa.Roles;
 import io.quarkus.security.jpa.UserDefinition;
 import io.quarkus.security.jpa.Username;
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,11 +17,7 @@ import lombok.*;
 @Entity
 @UserDefinition
 @Table(name = "user")
-public class User extends PanacheEntityBase {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class User extends BaseEntity {
 
     @Column(name = "name")
     private String name;
@@ -45,6 +41,11 @@ public class User extends PanacheEntityBase {
         user.password = BcryptUtil.bcryptHash(user.password);
         user.role = validateUsername(user.username);
         user.persist();
+    }
+
+    @JsonbTransient
+    public String getPassword() {
+        return password;
     }
 
     private static String validateUsername(String username) {

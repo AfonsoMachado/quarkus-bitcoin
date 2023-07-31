@@ -14,17 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "purchase")
-public class Purchase {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @CreationTimestamp
-    private LocalDateTime createdAt;
-
-    @UpdateTimestamp
-    private LocalDateTime updatedAt;
+public class Purchase extends BaseEntity {
 
     @Column(name = "price")
     private Double price;
