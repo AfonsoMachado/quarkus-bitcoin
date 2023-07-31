@@ -4,6 +4,8 @@
 
 CREATE TABLE IF NOT EXISTS `user` (
 	`id` int NOT NULL AUTO_INCREMENT,
+	`createdAt` TIMESTAMP,
+	`updatedAt` TIMESTAMP,
 	`name` VARCHAR(50) NOT NULL,
 	`document` VARCHAR(14) NOT NULL,
 	`username` VARCHAR(50) NOT NULL,
@@ -13,10 +15,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 CREATE TABLE IF NOT EXISTS `purchase` (
 	`id` int NOT NULL AUTO_INCREMENT,
-	`price` decimal(6,2) NOT NULL,
-	`order_type` VARCHAR(20) NOT NULL,
 	`createdAt` TIMESTAMP,
 	`updatedAt` TIMESTAMP,
+	`price` decimal(6,2) NOT NULL,
+	`order_type` VARCHAR(20) NOT NULL,
 	`status` VARCHAR(30) NOT NULL,
 	`user_id` int NOT NULL,
 	PRIMARY KEY (`id`),
