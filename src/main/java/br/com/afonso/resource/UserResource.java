@@ -34,4 +34,13 @@ public class UserResource {
     public List<User> findAllUsers() {
         return this.userService.findAllUsers();
     }
+
+    @DELETE
+    @RolesAllowed("admin")
+    @Path("{id}")
+    @Transactional
+    public Response delete(@PathParam("id") Long id) {
+        this.userService.delete(id);
+        return Response.ok("Usuário deletado com sucesso").status(201).build();
+    }
 }

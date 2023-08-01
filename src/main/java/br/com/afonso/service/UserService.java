@@ -29,6 +29,16 @@ public class UserService {
         return this.userRepository.listAll();
     }
 
+    public void delete(Long id) {
+        User user = this.userRepository.findById(id);
+
+        if (user == null) {
+            throw new BusinessException("Usuário não encontrado na base de dados");
+        }
+
+        this.userRepository.delete(user);
+    }
+
     private User findByUsername(String username) {
         return this.userRepository.findByUsername(username);
     }
