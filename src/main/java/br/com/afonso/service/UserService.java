@@ -6,6 +6,7 @@ import br.com.afonso.util.BusinessException;
 import io.quarkus.elytron.security.common.BcryptUtil;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.ws.rs.NotFoundException;
 
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class UserService {
         User user = this.userRepository.findById(id);
 
         if (user == null) {
-            throw new BusinessException("Usuário não encontrado na base de dados");
+            throw new NotFoundException("Usuário não encontrado na base de dados");
         }
 
         this.userRepository.delete(user);
