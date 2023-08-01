@@ -2,12 +2,14 @@ package br.com.afonso.resource;
 
 import br.com.afonso.model.User;
 import br.com.afonso.repository.UserRepository;
+import br.com.afonso.service.UserService;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
@@ -15,20 +17,21 @@ import java.util.List;
 public class UserResource {
 
     @Inject
-    UserRepository userRepository;
+    UserService userService;
 
     @POST
     @PermitAll
     @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
-    public void createUser(User user) {
-        user.add(user);
+    public Response create(User user) {
+        this.userService.create(user);
+        return Response.ok("Usuário criado com sucesso").status(201).build();
     }
 
     @GET
     @RolesAllowed("admin")
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> findAllUsers() {
-        return User.listAll();
+        return this.userService.findAllUsers();
     }
 }

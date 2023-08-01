@@ -23,13 +23,13 @@ public class PurchaseResource {
     @RolesAllowed("user")
     @Consumes(MediaType.APPLICATION_JSON)
     public void create(@Context SecurityContext securityContext, Purchase purchase) {
-        purchaseService.create(securityContext, purchase);
+        this.purchaseService.create(securityContext, purchase);
     }
 
     @GET
     @RolesAllowed("admin")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Purchase> findAllPurchases() {
-        return purchaseService.findAllPurchases();
+        return this.purchaseService.findAllPurchases();
     }
 }

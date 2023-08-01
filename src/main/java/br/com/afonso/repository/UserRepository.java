@@ -15,5 +15,14 @@ public class UserRepository implements PanacheRepository<User> {
     @Override
     public void persist(final User user) {
         this.entityManager.persist(user);
-        }
     }
+
+    public User findByUsername(String username) {
+        return this.find("username", username).firstResult();
+    }
+
+    public User findByDocument(String document) {
+        return this.find("document", document).firstResult();
+    }
+
+}
