@@ -1,7 +1,6 @@
 package br.com.afonso.resource;
 
 import br.com.afonso.model.User;
-import br.com.afonso.repository.UserRepository;
 import br.com.afonso.service.UserService;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
@@ -33,6 +32,15 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> findAllUsers() {
         return this.userService.findAllUsers();
+    }
+
+    @GET
+    @RolesAllowed("admin")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("{id}")
+    @Transactional
+    public User findById(@PathParam("id") Long id) {
+        return this.userService.findById(id);
     }
 
     @DELETE

@@ -2,11 +2,11 @@ package br.com.afonso.service;
 
 import br.com.afonso.model.User;
 import br.com.afonso.repository.UserRepository;
-import br.com.afonso.util.BusinessException;
 import io.quarkus.elytron.security.common.BcryptUtil;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.NotFoundException;
+import jakarta.validation.constraints.NotNull;
+import jakarta.ws.rs.ForbiddenException;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public class UserService {
 
     public void create(User user) {
         if (this.findByUsername(user.getUsername()) != null || this.findByDocument(user.getDocument()) != null) {
-            throw new BusinessException("Usuário já cadastrado");
+            throw new ForbiddenException("Usuário já cadastrado");
         }
 
         user.setPassword(BcryptUtil.bcryptHash(user.getPassword()));
@@ -30,14 +30,13 @@ public class UserService {
         return this.userRepository.listAll();
     }
 
-    public void delete(Long id) {
+    public void delete(@NotNull Long id) {
         User user = this.userRepository.findById(id);
-
-        if (user == null) {
-            throw new NotFoundException("Usuário não encontrado na base de dados");
-        }
-
         this.userRepository.delete(user);
+    }
+
+    public User findById(@NotNull Long id) {
+        return this.userRepository.findById(id);
     }
 
     private User findByUsername(String username) {
