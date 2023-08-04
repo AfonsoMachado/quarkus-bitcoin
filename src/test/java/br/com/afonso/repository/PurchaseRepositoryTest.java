@@ -1,9 +1,9 @@
 package br.com.afonso.repository;
 
-import br.com.afonso.model.Purchase;
+import br.com.afonso.purchase.model.Purchase;
+import br.com.afonso.purchase.repository.PurchaseRepository;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
-import io.restassured.internal.common.assertion.Assertion;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

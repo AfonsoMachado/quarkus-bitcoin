@@ -1,4 +1,4 @@
-package br.com.afonso.model;
+package br.com.afonso.util.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.GeneratedValue;

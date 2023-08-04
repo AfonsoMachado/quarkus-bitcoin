@@ -1,8 +1,8 @@
-package br.com.afonso.service;
+package br.com.afonso.purchase.service;
 
-import br.com.afonso.model.Purchase;
-import br.com.afonso.model.User;
-import br.com.afonso.repository.PurchaseRepository;
+import br.com.afonso.purchase.model.Purchase;
+import br.com.afonso.user.model.User;
+import br.com.afonso.purchase.repository.PurchaseRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.core.SecurityContext;

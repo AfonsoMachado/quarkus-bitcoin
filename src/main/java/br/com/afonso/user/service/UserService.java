@@ -1,7 +1,7 @@
-package br.com.afonso.service;
+package br.com.afonso.user.service;
 
-import br.com.afonso.model.User;
-import br.com.afonso.repository.UserRepository;
+import br.com.afonso.user.model.User;
+import br.com.afonso.user.repository.UserRepository;
 import io.quarkus.elytron.security.common.BcryptUtil;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;

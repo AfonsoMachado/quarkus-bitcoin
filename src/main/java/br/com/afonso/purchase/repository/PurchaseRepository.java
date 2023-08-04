@@ -1,6 +1,6 @@
-package br.com.afonso.repository;
+package br.com.afonso.purchase.repository;
 
-import br.com.afonso.model.Purchase;
+import br.com.afonso.purchase.model.Purchase;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;

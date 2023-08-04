@@ -1,5 +1,6 @@
 package br.com.afonso.model;
 
+import br.com.afonso.user.model.User;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.panache.mock.PanacheMock;
 import io.quarkus.test.junit.QuarkusTest;

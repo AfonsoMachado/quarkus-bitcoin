@@ -1,7 +1,7 @@
-package br.com.afonso.resource;
+package br.com.afonso.purchase.resource;
 
-import br.com.afonso.model.Purchase;
-import br.com.afonso.service.PurchaseService;
+import br.com.afonso.purchase.model.Purchase;
+import br.com.afonso.purchase.service.PurchaseService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;

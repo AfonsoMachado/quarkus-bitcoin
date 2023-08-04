@@ -1,5 +1,6 @@
-package br.com.afonso.model;
+package br.com.afonso.user.model;
 
+import br.com.afonso.util.model.BaseEntity;
 import io.quarkus.security.jpa.Password;
 import io.quarkus.security.jpa.Roles;
 import io.quarkus.security.jpa.UserDefinition;

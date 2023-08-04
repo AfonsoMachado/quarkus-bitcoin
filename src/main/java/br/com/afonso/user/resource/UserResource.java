@@ -1,7 +1,7 @@
-package br.com.afonso.resource;
+package br.com.afonso.user.resource;
 
-import br.com.afonso.model.User;
-import br.com.afonso.service.UserService;
+import br.com.afonso.user.model.User;
+import br.com.afonso.user.service.UserService;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;

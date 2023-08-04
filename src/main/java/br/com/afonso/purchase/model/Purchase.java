@@ -1,11 +1,8 @@
-package br.com.afonso.model;
+package br.com.afonso.purchase.model;
 
+import br.com.afonso.util.model.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import java.time.LocalDateTime;
 
 @Builder
 @Getter
