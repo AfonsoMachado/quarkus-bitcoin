@@ -1,6 +1,7 @@
 package br.com.afonso.user.resource;
 
 import br.com.afonso.user.dto.CreateUserDto;
+import br.com.afonso.user.dto.UserDto;
 import br.com.afonso.user.model.User;
 import br.com.afonso.user.service.UserService;
 import jakarta.annotation.security.PermitAll;
@@ -31,7 +32,7 @@ public class UserResource {
     @GET
     @RolesAllowed("admin")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<User> findAllUsers() {
+    public List<UserDto> findAllUsers() {
         return this.userService.findAllUsers();
     }
 

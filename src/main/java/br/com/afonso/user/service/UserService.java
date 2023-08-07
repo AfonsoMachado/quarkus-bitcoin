@@ -1,6 +1,7 @@
 package br.com.afonso.user.service;
 
 import br.com.afonso.user.dto.CreateUserDto;
+import br.com.afonso.user.dto.UserDto;
 import br.com.afonso.user.mappers.UserMapper;
 import br.com.afonso.user.model.User;
 import br.com.afonso.user.repository.UserRepository;
@@ -34,8 +35,9 @@ public class UserService {
         this.userRepository.persist(user);
     }
 
-    public List<User> findAllUsers() {
-        return this.userRepository.listAll();
+    public List<UserDto> findAllUsers() {
+        final List<User> users = this.userRepository.listAll();
+        return this.userMapper.entityListToDtoList(users);
     }
 
     public void delete(@NotNull Long id) {
