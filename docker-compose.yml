@@ -8,6 +8,6 @@ services:
       - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: mysql-test-db
+      MYSQL_DATABASE: quarkus_crud
       MYSQL_USER: admin
       MYSQL_PASSWORD: admin
