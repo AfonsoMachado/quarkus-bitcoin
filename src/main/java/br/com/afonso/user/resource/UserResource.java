@@ -1,5 +1,6 @@
 package br.com.afonso.user.resource;
 
+import br.com.afonso.user.dto.CreateUserDto;
 import br.com.afonso.user.model.User;
 import br.com.afonso.user.service.UserService;
 import jakarta.annotation.security.PermitAll;
@@ -22,8 +23,8 @@ public class UserResource {
     @PermitAll
     @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response create(User user) {
-        this.userService.create(user);
+    public Response create(CreateUserDto dto) {
+        this.userService.create(dto);
         return Response.ok("Usuário criado com sucesso").status(201).build();
     }
 

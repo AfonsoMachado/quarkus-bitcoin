@@ -8,6 +8,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.NotFoundException;
 
+import java.util.Optional;
+
 @ApplicationScoped
 public class UserRepository implements PanacheRepository<User> {
 
@@ -19,12 +21,12 @@ public class UserRepository implements PanacheRepository<User> {
         this.entityManager.persist(user);
     }
 
-    public User findByUsername(String username) {
-        return this.find("username", username).firstResult();
+    public Optional<User> findByUsername(String username) {
+        return this.find("username", username).firstResultOptional();
     }
 
-    public User findByDocument(String document) {
-        return this.find("document", document).firstResult();
+    public Optional<User> findByDocument(String document) {
+        return this.find("document", document).firstResultOptional();
     }
 
     public User findById(@NotNull Long id) {

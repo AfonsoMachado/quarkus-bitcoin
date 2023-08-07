@@ -1,5 +1,7 @@
 package br.com.afonso.user.service;
 
+import br.com.afonso.user.dto.CreateUserDto;
+import br.com.afonso.user.mappers.UserMapper;
 import br.com.afonso.user.model.User;
 import br.com.afonso.user.repository.UserRepository;
 import io.quarkus.elytron.security.common.BcryptUtil;
@@ -9,6 +11,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.ForbiddenException;
 
 import java.util.List;
+import java.util.Optional;
 
 @ApplicationScoped
 public class UserService {
@@ -16,10 +19,15 @@ public class UserService {
     @Inject
     UserRepository userRepository;
 
-    public void create(User user) {
-        if (this.findByUsername(user.getUsername()) != null || this.findByDocument(user.getDocument()) != null) {
+    @Inject
+    UserMapper userMapper;
+
+    public void create(CreateUserDto dto) {
+        if (this.findByUsername(dto.getUsername()).isPresent() || this.findByDocument(dto.getDocument()).isPresent()) {
             throw new ForbiddenException("Usuário já cadastrado");
         }
+
+        User user = this.userMapper.toEntity(dto);
 
         user.setPassword(BcryptUtil.bcryptHash(user.getPassword()));
         user.setRole(User.validateUsername(user.getUsername()));
@@ -39,11 +47,11 @@ public class UserService {
         return this.userRepository.findById(id);
     }
 
-    private User findByUsername(String username) {
+    private Optional<User> findByUsername(String username) {
         return this.userRepository.findByUsername(username);
     }
 
-    private User findByDocument(String document) {
+    private Optional<User> findByDocument(String document) {
         return this.userRepository.findByDocument(document);
     }
 
