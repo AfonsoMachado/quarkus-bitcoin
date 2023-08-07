@@ -41,7 +41,7 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
     @Transactional
-    public User findById(@PathParam("id") Long id) {
+    public UserDto findById(@PathParam("id") Long id) {
         return this.userService.findById(id);
     }
 

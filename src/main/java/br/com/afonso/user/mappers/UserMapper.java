@@ -10,8 +10,10 @@ import java.util.List;
 @Mapper(componentModel = "cdi")
 public interface UserMapper {
 
-    User toEntity(CreateUserDto certificationDto);
+    User toEntity(CreateUserDto createUserDto);
 
-    List<UserDto> entityListToDtoList(List<User> certifications);
+    UserDto toDto(User user);
+
+    List<UserDto> entityListToDtoList(List<User> users);
 
 }

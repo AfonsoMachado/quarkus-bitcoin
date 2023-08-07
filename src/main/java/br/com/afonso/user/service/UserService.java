@@ -45,8 +45,9 @@ public class UserService {
         this.userRepository.delete(user);
     }
 
-    public User findById(@NotNull Long id) {
-        return this.userRepository.findById(id);
+    public UserDto findById(@NotNull Long id) {
+        final User user = this.userRepository.findById(id);
+        return this.userMapper.toDto(user);
     }
 
     private Optional<User> findByUsername(String username) {
