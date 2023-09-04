@@ -45,4 +45,13 @@ public class PurchaseResource {
     public PurchaseDto findById(@PathParam("id") Long id) {
         return this.purchaseService.findById(id);
     }
+
+    @DELETE
+    @RolesAllowed("admin")
+    @Path("{id}")
+    @Transactional
+    public Response delete(@PathParam("id") Long id) {
+        this.purchaseService.delete(id);
+        return Response.ok("Compra deletada com sucesso!").status(200).build();
+    }
 }

@@ -8,6 +8,7 @@ import br.com.afonso.user.model.User;
 import br.com.afonso.purchase.repository.PurchaseRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.core.SecurityContext;
 
 import java.util.List;
@@ -44,5 +45,10 @@ public class PurchaseService {
     public PurchaseDto findById(Long id) {
         final Purchase purchase = this.purchaseRepository.findById(id);
         return this.purchaseMapper.toDto(purchase);
+    }
+
+    public void delete(@NotNull Long id) {
+        Purchase purchase = this.purchaseRepository.findById(id);
+        this.purchaseRepository.delete(purchase);
     }
 }

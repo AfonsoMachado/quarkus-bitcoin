@@ -51,6 +51,6 @@ public class UserResource {
     @Transactional
     public Response delete(@PathParam("id") Long id) {
         this.userService.delete(id);
-        return Response.ok("Usuário deletado com sucesso").status(202).build();
+        return Response.ok("Usuário deletado com sucesso").status(200).build();
     }
 }
