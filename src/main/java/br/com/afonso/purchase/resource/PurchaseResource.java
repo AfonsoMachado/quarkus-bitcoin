@@ -1,5 +1,7 @@
 package br.com.afonso.purchase.resource;
 
+import br.com.afonso.purchase.dto.CreatePurchaseDto;
+import br.com.afonso.purchase.dto.PurchaseDto;
 import br.com.afonso.purchase.model.Purchase;
 import br.com.afonso.purchase.service.PurchaseService;
 import jakarta.annotation.security.RolesAllowed;
@@ -8,6 +10,7 @@ import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.SecurityContext;
 
 import java.util.List;
@@ -22,14 +25,24 @@ public class PurchaseResource {
     @Transactional
     @RolesAllowed("user")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void create(@Context SecurityContext securityContext, Purchase purchase) {
+    public Response create(@Context SecurityContext securityContext, CreatePurchaseDto purchase) {
         this.purchaseService.create(securityContext, purchase);
+        return Response.ok("Compra criada com sucesso").status(201).build();
     }
 
     @GET
     @RolesAllowed("admin")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Purchase> findAllPurchases() {
+    public List<PurchaseDto> findAllPurchases() {
         return this.purchaseService.findAllPurchases();
+    }
+
+    @GET
+    @RolesAllowed("admin")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("{id}")
+    @Transactional
+    public PurchaseDto findById(@PathParam("id") Long id) {
+        return this.purchaseService.findById(id);
     }
 }
